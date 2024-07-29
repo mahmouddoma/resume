@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mahmoud Doma's Resume</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 800px;
+        margin: 40px auto;
+        background: #fff;
+        padding: 20px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+      h1,
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+      h1 {
+        margin-bottom: 20px;
+        font-size: 2em;
+      }
+      h2 {
+        margin-top: 30px;
+        font-size: 1.5em;
+      }
+      ul {
+        margin-top: 10px;
+        margin-left: 20px;
+        list-style-type: none;
+        padding-left: 0;
+      }
+      li {
+        margin-bottom: 5px;
+      }
+      p,
+      li,
+      a {
+        font-size: 1em;
+        color: #333;
+      }
+      a {
+        color: #0066cc;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      hr {
+        margin: 20px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+        height: 3px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #0066cc;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        margin-top: 20px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      }
+      button:hover {
+        background-color: #004a99;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Mahmoud Doma</h1>
+      <p>Location: Al Sharqiya, Egypt</p>
+      <p>Date of Birth: 11th of May 2002</p>
+      <p>Nationality: Egyptian</p>
+      <p>Marital Status: Single</p>
+      <hr />
+
+      <h2>Contact Info</h2>
+      <ul>
+        <li>Mobile: 01093430526</li>
+        <li>
+          Email:
+          <a href="mailto:devdoma2002@gmail.com">devdoma2002@gmail.com</a>
+        </li>
+        <li>
+          LinkedIn:
+          <a
+            href="https://linkedin.com/in/mahmoud-doma-4520a222a"
+            target="_blank"
+            >linkedin.com/in/mahmoud-doma-4520a222a</a
+          >
+        </li>
+        <li>
+          GitHub:
+          <a href="https://github.com/mahmouddoma" target="_blank"
+            >github.com/mahmouddoma</a
+          >
+        </li>
+      </ul>
+      <hr />
+
+      <h2>Education</h2>
+      <ul>
+        <li>Bachelor’s Degree in Arts, Zagazig University, Egypt</li>
+        <li>Expected Graduation: 2024</li>
+        <li>Score: 92 out of 100</li>
+      </ul>
+      <hr />
+
+      <h2>Certifications</h2>
+      <ul>
+        <li>Angular Nanodegree (Aug 2022)</li>
+        <li>JavaScript Course (Jun 2022) — Score: 90 out of 100</li>
+      </ul>
+      <hr />
+
+      <h2>Professional Experience</h2>
+      <h3>
+        Software Implementer, Izam, Inc., Smart Village, Egypt (July 2022 –
+        Present)
+      </h3>
+      <ul>
+        <li>Implementing software solutions tailored to client needs.</li>
+        <li>
+          Collaborating with cross-functional teams to enhance software
+          functionality.
+        </li>
+        <li>Providing technical support and training to clients.</li>
+      </ul>
+
+      <h3>Front End Developer, Freelancer (2020 – Present)</h3>
+      <ul>
+        <li>
+          Focused on web design and development, enhancing user experience
+          across various platforms.
+        </li>
+        <li>
+          Completed the Udacity Cross Skilling Angular Nanodegree, deepening
+          knowledge of components, libraries, and data manipulation.
+        </li>
+        <li>
+          Developed personalized web applications, demonstrating strong coding
+          abilities.
+        </li>
+      </ul>
+      <hr />
+
+      <h2>Languages</h2>
+      <ul>
+        <li>Arabic: Mother tongue</li>
+        <li>English: Intermediate</li>
+        <li>French: Basic</li>
+      </ul>
+      <hr />
+
+      <h2>Skills</h2>
+      <ul>
+        <li>Web Development: Advanced in HTML5, CSS3, and Bootstrap</li>
+        <li>
+          Programming Languages: Intermediate in JavaScript, TypeScript, and
+          Angular; Beginner in Git, GitHub, and Sass
+        </li>
+      </ul>
+
+      <button id="downloadButton">Download Resume as PDF</button>
+    </div>
+
+    <!-- Include pdf-lib from CDN -->
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <script>
+      document
+        .getElementById("downloadButton")
+        .addEventListener("click", async () => {
+          const { PDFDocument, rgb } = PDFLib;
+
+          // Create a new PDF document
+          const pdfDoc = await PDFDocument.create();
+          const page = pdfDoc.addPage([600, 900]);
+          const { width, height } = page.getSize();
+
+          const fontSize = 12;
+          const lineHeight = 20;
+          let y = height - 50;
+
+          function addText(text, options = {}) {
+            const defaultOptions = {
+              size: fontSize,
+              color: rgb(0, 0, 0),
+              x: 50,
+              y: y,
+            };
+            const finalOptions = { ...defaultOptions, ...options };
+            page.drawText(text, finalOptions);
+            y -= lineHeight;
+          }
+
+          function addHeader(text, options = {}) {
+            const defaultOptions = {
+              size: 18,
+              color: rgb(0, 0, 0),
+              x: 50,
+              y: y,
+            };
+            const finalOptions = { ...defaultOptions, ...options };
+            page.drawText(text, finalOptions);
+            y -= lineHeight * 1.5;
+          }
+
+          function addSubHeader(text, options = {}) {
+            const defaultOptions = {
+              size: 24,
+              color: rgb(0, 0, 0),
+              x: 50,
+              y: y,
+            };
+            const finalOptions = { ...defaultOptions, ...options };
+            page.drawText(text, finalOptions);
+            y -= lineHeight * 2;
+          }
+
+          // Add the resume content to the PDF
+          addSubHeader("Mahmoud Doma", { x: 200 });
+          addText("Location: Al Sharqiya, Egypt");
+          addText("Date of Birth: 11th of May 2002");
+          addText("Nationality: Egyptian");
+          addText("Marital Status: Single");
+          y -= lineHeight;
+
+          addHeader("Contact Info");
+          addText("Mobile: 01093430526");
+          addText("Email: devdoma2002@gmail.com");
+          addText("LinkedIn: linkedin.com/in/mahmoud-doma-4520a222a/");
+          addText("GitHub: github.com/mahmouddoma");
+          y -= lineHeight;
+
+          addHeader("Education");
+          addText("Bachelor’s Degree in Arts, Zagazig University, Egypt");
+          addText("Expected Graduation: 2024");
+          addText("Score: 92 out of 100");
+          y -= lineHeight;
+
+          addHeader("Certifications");
+          addText("Angular Nanodegree (Aug 2022)");
+          addText("JavaScript Course (Jun 2022) — Score: 90 out of 100");
+          y -= lineHeight;
+
+          addHeader("Professional Experience");
+          addText(
+            "Software Implementer, Izam, Inc., Smart Village, Egypt (July 2022 – Present)",
+            { y: y }
+          );
+          addText("Implementing software solutions tailored to client needs.");
+          addText(
+            "Collaborating with cross-functional teams to enhance software functionality."
+          );
+          addText("Providing technical support and training to clients.");
+          y -= lineHeight;
+
+          addText("Front End Developer, Freelancer (2020 – Present)", { y: y });
+          addText(
+            "Focused on web design and development, enhancing user experience across various platforms."
+          );
+          addText(
+            "Completed the Udacity Cross Skilling Angular Nanodegree, deepening knowledge of components, libraries, and data manipulation."
+          );
+          addText(
+            "Developed personalized web applications, demonstrating strong coding abilities."
+          );
+          y -= lineHeight;
+
+          addHeader("Languages");
+          addText("Arabic: Mother tongue");
+          addText("English: Intermediate");
+          addText("French: Basic");
+          y -= lineHeight;
+
+          addHeader("Skills");
+          addText("Web Development: Advanced in HTML5, CSS3, and Bootstrap");
+          addText(
+            "Programming Languages: Intermediate in JavaScript, TypeScript, and Angular; Beginner in Git, GitHub, and Sass"
+          );
+
+          // Save the document and trigger download
+          const pdfBytes = await pdfDoc.save();
+          const blob = new Blob([pdfBytes], { type: "application/pdf" });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = "mahmoud_doma_resume.pdf";
+
+          // Append link to body and trigger download
+          document.body.appendChild(link);
+          link.click();
+
+          // Clean up
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+        });
+    </script>
+  </body>
+</html>
